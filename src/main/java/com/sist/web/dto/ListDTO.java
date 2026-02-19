@@ -6,8 +6,6 @@ import lombok.Data;
 
 @Data
 public class ListDTO<T> {
-	
 	List<T> list;
 	int curpage, totalpage, startPage, endPage;
-
 }

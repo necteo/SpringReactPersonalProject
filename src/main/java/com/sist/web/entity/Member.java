@@ -7,11 +7,9 @@ import lombok.Data;
 @Entity
 @Data
 public class Member {
-	
 	@Id
 	private String id;
 	
 	private String pwd;
 	private String name;
-
 }

@@ -11,21 +11,15 @@ import com.sist.web.entity.Member;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, String> {
-	
 	@Query("SELECT COUNT(*) FROM Member "
 		 + "WHERE id = :id")
-	public int memberIdCount(@Param("id") String id);
-	
-	// public int countById(String id)
+	int memberIdCount(@Param("id") String id);
 	
 	@Query("SELECT m FROM Member m "
 		 + "WHERE id = :id")
-	public Optional<Member> memberInfoData(@Param("id") String id);
-	
-	// public Optional<Member> queryById(String id)
+	Optional<Member> memberInfoData(@Param("id") String id);
 	
 	@Query("SELECT pwd FROM Member "
 		 + "WHERE id = :id")
-	public String memberGetPassword(@Param("id") String id);
-
+	String memberGetPassword(@Param("id") String id);
 }

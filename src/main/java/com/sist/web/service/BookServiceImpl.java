@@ -1,5 +1,6 @@
 package com.sist.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
@@ -8,10 +9,16 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.sist.web.commons.Pagination;
+import com.sist.web.dto.BookDetailDTO;
+import com.sist.web.dto.BookDetailPageDTO;
 import com.sist.web.dto.BookItem;
+import com.sist.web.dto.CommentDTO;
 import com.sist.web.dto.ListDTO;
 import com.sist.web.dto.MainPageDTO;
+import com.sist.web.entity.Comment;
+import com.sist.web.entity.WikiBook;
 import com.sist.web.repository.BookRepository;
+import com.sist.web.repository.CommentRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService {
 	private final BookRepository bRepo;
+	private final CommentRepository cRepo;
 
 	@Override
 	public MainPageDTO mainPageData() {
@@ -44,5 +52,17 @@ public class BookServiceImpl implements BookService {
 		int count = (int) bRepo.count();
 		int totalpage = (int) (Math.ceil(1.0 * count / Pagination.ROW_SIZE));
 		return Pagination.createPagination(list, page, totalpage);
+	}
+
+	@Override
+	public BookDetailPageDTO bookDetailData(String isbn) {
+		WikiBook book = bRepo.findByIsbn(isbn).orElseThrow();
+		List<Comment> cList = cRepo.findByIsbn(isbn);
+		BookDetailDTO detail = new BookDetailDTO(book);
+		List<CommentDTO> comments = new ArrayList<>();
+		for (Comment c : cList) {
+			comments.add(new CommentDTO(c));
+		}
+		return new BookDetailPageDTO(detail, comments);
 	}
 }

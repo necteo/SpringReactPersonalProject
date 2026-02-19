@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.sist.web.entity.WikiBook;
 
+
 @Repository
 public interface BookRepository extends JpaRepository<WikiBook, String> {
 	@Query(value = """
@@ -20,4 +21,6 @@ public interface BookRepository extends JpaRepository<WikiBook, String> {
 		WHERE rownum <= 1
 		""", nativeQuery = true)
 	Optional<WikiBook> mainBookData();
+	
+	Optional<WikiBook> findByIsbn(String isbn);
 }

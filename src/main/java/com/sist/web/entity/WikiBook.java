@@ -1,6 +1,6 @@
 package com.sist.web.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,7 +11,6 @@ import lombok.Data;
 @Table(name = "wikibook")
 @Data
 public class WikiBook {
-	
 	@Id
 	private String isbn;
 	
@@ -21,10 +20,9 @@ public class WikiBook {
 	private String translator;
 	private int page;
 	private int price;
-	private Date pubdate;
+	private LocalDate pubdate;
 	private String series;
 	private String type;
 	private String link;
 	private int hit;
-
 }

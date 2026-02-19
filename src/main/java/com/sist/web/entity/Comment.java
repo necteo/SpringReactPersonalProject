@@ -1,6 +1,6 @@
 package com.sist.web.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -17,18 +17,16 @@ import lombok.Data;
 @DynamicInsert
 @DynamicUpdate
 public class Comment {
-	
 	@Id
 	private int no;
 	
 	@Column(updatable = false, insertable = true)
-	private int isbn;
+	private String isbn;
 	
 	@Column(updatable = false, insertable = true)
 	private String id;
 	
 	private String name;
 	private String msg;
-	private Date regdate;
-
+	private LocalDate regdate;
 }
