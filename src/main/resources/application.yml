@@ -25,6 +25,11 @@ spring:
 #        '[format_sql]': true
 #        '[user_sql_comments]': true
 
+  ai:
+    google:
+      genai:
+        api-key: ${API_KEY}
+
 logging:
   level:
     '[org.hibernate.SQL]': DEBUG
