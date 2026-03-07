@@ -8,9 +8,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.sist.web.entity.Member;
+import java.util.List;
+
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member, String> {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 	@Query("SELECT COUNT(*) FROM Member "
 		 + "WHERE id = :id")
 	int memberIdCount(@Param("id") String id);
@@ -22,4 +24,6 @@ public interface MemberRepository extends JpaRepository<Member, String> {
 	@Query("SELECT pwd FROM Member "
 		 + "WHERE id = :id")
 	String memberGetPassword(@Param("id") String id);
+	
+	Optional<Member> findByEmail(String email);
 }

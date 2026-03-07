@@ -21,14 +21,14 @@ public class MemberServiceImpl implements MemberService {
 		if (count == 0) {
 			res.setMsg("NOID");
 		} else {
-			Member m = mRepo.memberInfoData(req.id()).orElseThrow();
+			/*Member m = mRepo.memberInfoData(req.id()).orElseThrow();
 			if (req.pwd().equals(m.getPwd())) {
 				res.setId(req.id());
 				res.setName(m.getName());
 				res.setMsg("OK");
 			} else {
 				res.setMsg("NOPWD");
-			}
+			}*/
 		}
 		return res;
 	}
