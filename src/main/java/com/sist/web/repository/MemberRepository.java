@@ -3,27 +3,20 @@ package com.sist.web.repository;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.sist.web.entity.AuthProvider;
 import com.sist.web.entity.Member;
-import java.util.List;
 
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member, Long> {
-	@Query("SELECT COUNT(*) FROM Member "
-		 + "WHERE id = :id")
-	int memberIdCount(@Param("id") String id);
-	
-	@Query("SELECT m FROM Member m "
-		 + "WHERE id = :id")
-	Optional<Member> memberInfoData(@Param("id") String id);
-	
-	@Query("SELECT pwd FROM Member "
-		 + "WHERE id = :id")
-	String memberGetPassword(@Param("id") String id);
-	
-	Optional<Member> findByEmail(String email);
+public interface MemberRepository extends JpaRepository<Member, Long> {	
+    // 기본 조회: provider + providerId (이메일 없어도 동작)
+    Optional<Member> findByProviderAndProviderId(AuthProvider provider, String providerId);
+
+    // 이메일 연동 시 중복 체크용
+    Optional<Member> findByEmail(String email);
+
+    // 같은 이메일로 다른 소셜 가입한 경우 감지
+    Optional<Member> findByEmailAndProviderNot(String email, AuthProvider provider);
 }

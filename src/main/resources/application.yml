@@ -72,3 +72,15 @@ logging:
   level:
     '[org.hibernate.SQL]': DEBUG
     '[org.hibernate.orm.jdbc.bind]': TRACE
+
+oauth2:
+  redirect-url: ${OAUTH2_REDIRECT_URL}  # 프론트엔드 주소
+
+jwt:
+  expiration: ${JWT_EXPIRATION}        # Access Token  15분
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION}  # Refresh Token 7일
+  secret: ${JWT_SECRET}
+
+# 개발: false / 운영: true
+app:
+  secure-cookie: false

@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.NoSuchElementException;
 
 import org.hibernate.TypeMismatchException;
-import org.hibernate.query.sqm.UnknownEntityException;
 import org.hibernate.query.sqm.sql.ConversionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
