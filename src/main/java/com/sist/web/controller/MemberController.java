@@ -2,7 +2,6 @@ package com.sist.web.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,9 +22,8 @@ public class MemberController {
     private final MemberRepository memberRepository;
 
     @GetMapping("/me")
-    public ResponseEntity<MemberResponse> getMe(@AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<MemberResponse> getMe(@AuthenticationPrincipal String subject) {
         // JWT subject = "PROVIDER_providerId"
-        String subject = userDetails.getUsername();
         String[] parts = subject.split("_", 2);
 
         Member member = memberRepository.findByProviderAndProviderId(
