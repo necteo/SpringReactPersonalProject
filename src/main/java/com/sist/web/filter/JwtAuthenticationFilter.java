@@ -33,6 +33,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     // 인증 불필요 경로 — SecurityConfig의 permitAll과 맞춰야 함
     private static final List<String> WHITELIST = List.of(
+    	"/",
+    	"/book",
         "/api/auth",
         "/login",
         "/oauth2"

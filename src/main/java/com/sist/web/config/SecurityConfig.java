@@ -46,6 +46,8 @@ public class SecurityConfig {
 
             // 요청별 권한 설정
             .authorizeHttpRequests(auth -> auth
+            	.requestMatchers("/").permitAll()
+            	.requestMatchers("/book/**").permitAll()
                 .requestMatchers("/api/auth/**").permitAll()
                 .requestMatchers("/login/oauth2/**", "/oauth2/**").permitAll()
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")

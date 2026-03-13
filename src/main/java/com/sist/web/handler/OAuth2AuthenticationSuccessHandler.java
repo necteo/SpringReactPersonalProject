@@ -74,7 +74,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         // 이메일 여부와 무관하게 리다이렉트만
         String targetUrl = member.getEmail() == null
                 ? redirectUri + "/additional-info"
-                : redirectUri + "/home";
+                : redirectUri + "/";
         getRedirectStrategy().sendRedirect(request, response, targetUrl);
     }
 
